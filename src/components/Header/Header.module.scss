@@ -1,0 +1,384 @@
+// Header.module.scss
+.header {
+   background-color: #ffffff;
+   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+   position: sticky;
+   top: 0;
+   z-index: 50;
+}
+
+.container {
+   max-width: 1280px;
+   margin: 0 auto;
+   padding: 0 1rem;
+}
+
+.header-content {
+   display: flex;
+   align-items: center;
+   justify-content: space-between; /* thay vì space-between */
+   height: 70px;
+   column-gap: 12px; /* khoảng cách giữa các khối cấp 1 */
+}
+
+/* ------- Logo -------- */
+.logoMobile {
+   display: inline-block; /* trước đây có thể đang none */
+   margin-right: 10px; /* tách khỏi nav một chút */
+   img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+   }
+}
+.navMobile {
+   display: none;
+}
+
+// Navigation styles - Home và các page khác giống nhau
+.nav {
+   display: flex;
+   align-items: center;
+   gap: 2rem;
+   margin-left: 8px; /* tạo khoảng cách với logo */
+}
+
+.nav-link {
+   color: #374151;
+   text-decoration: none;
+   font-size: 18px; // Tăng font size cho dễ nhìn
+   font-weight: 500;
+   padding: 0.75rem 1rem;
+   position: relative;
+   transition: all 0.3s ease;
+
+   &:hover {
+      color: #2563eb;
+   }
+
+   // Underline hover effect
+   &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: #2563eb;
+      transform: translateX(-50%);
+      transition: width 0.3s ease;
+   }
+
+   &:hover::after {
+      width: 80%;
+   }
+
+   &.active {
+      color: #2563eb;
+   }
+   &.active::after {
+      width: 80%;
+   }
+}
+
+// Auth section
+.auth-section {
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+.user-info {
+   display: flex;
+   align-items: center;
+   color: #374151;
+   padding: 0.5rem 0.75rem;
+   font-size: 16px;
+}
+
+.user-icon {
+   margin-right: 0.5rem;
+   font-size: 16px;
+}
+
+.username {
+   font-weight: 500;
+}
+
+// Button styles
+.btn {
+   display: flex;
+   align-items: center;
+   padding: 0.75rem 1.5rem;
+   font-size: 16px;
+   font-weight: 500;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
+   text-decoration: none;
+   transition: all 0.3s ease;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+   &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-1px);
+   }
+}
+
+.btn-icon {
+   margin-right: 0.5rem;
+}
+
+.btn-login {
+   background-color: transparent;
+   color: #374151;
+   box-shadow: none;
+
+   &:hover {
+      color: #2563eb;
+      background-color: #f3f4f6;
+      box-shadow: none;
+      transform: none;
+   }
+}
+
+.btn-register {
+   background-color: #2563eb;
+   color: white;
+
+   &:hover {
+      background-color: #1d4ed8;
+   }
+}
+
+.btn-logout {
+   background-color: #ef4444;
+   color: white;
+
+   &:hover {
+      background-color: #dc2626;
+   }
+}
+
+/* ============ User dropdown ============ */
+.userDropdown {
+   position: relative;
+   display: inline-block;
+   padding-bottom: 8px;
+
+   .user-info {
+      border-radius: 8px;
+      gap: 6px;
+      &:hover {
+         background: #f3f4f6;
+      }
+   }
+   .menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      min-width: 180px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 6px;
+      display: none;
+      z-index: 1000;
+   }
+   .menuItem {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: #111827;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition:
+         background 0.2s ease,
+         color 0.2s ease;
+      &:hover {
+         background: #f9fafb;
+         color: #2563eb;
+      }
+   }
+   &:hover .menu {
+      display: block;
+   }
+}
+
+/* Giữ layout gọn khi ở khu vực auth-section */
+.auth-section .userDropdown {
+   margin-right: 0.25rem;
+}
+
+/* Mobile menu alignment tweak */
+.userDropdown .menu {
+   right: 0;
+   left: auto;
+}
+
+@media (max-width: 768px) {
+   .nav {
+      gap: 1rem;
+   }
+
+   .nav-link {
+      font-size: 16px;
+      padding: 0.5rem 0.75rem;
+   }
+
+   .btn {
+      font-size: 14px;
+      padding: 0.5rem 1rem;
+   }
+}
+
+/* ============ User dropdown ============ */
+.userDropdown {
+   position: relative;
+   display: inline-block;
+   /* thêm dòng dưới để tạo “vùng đệm” hover */
+   padding-bottom: 8px;
+
+   .user-info {
+      border-radius: 8px;
+      gap: 6px;
+
+      &:hover {
+         background: #f3f4f6;
+      }
+   }
+
+   .menu {
+      position: absolute;
+      /* đổi từ: top: calc(100% + 6px); */
+      top: 100%;
+      right: 0;
+      min-width: 180px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 6px;
+      display: none;
+      z-index: 1000;
+   }
+
+   .menuItem {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      font-size: 14px;
+      color: #111827;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition:
+         background 0.2s ease,
+         color 0.2s ease;
+
+      &:hover {
+         background: #f9fafb;
+         color: #2563eb;
+      }
+   }
+
+   &:hover .menu {
+      display: block;
+   }
+}
+
+/* Giữ layout gọn khi ở khu vực auth-section */
+.auth-section {
+   /* đã có display:flex; align-items:center; gap:1rem trong CSS cũ */
+   .userDropdown {
+      /* đẩy menu không đè vào nút logout */
+      margin-right: 0.25rem;
+   }
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+   .userDropdown .menu {
+      right: 0;
+      left: auto;
+   }
+}
+
+/* ==================== MOBILE (≤768px) ==================== */
+@media (max-width: 768px) {
+   /* Header layout 3 cột: logo | navMobile | auth */
+   .header-content {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      height: 56px; /* thấp hơn cho gọn */
+      column-gap: 10px;
+   }
+
+   .logoMobile {
+      display: inline-block;
+   }
+
+   /* Ẩn nav PC, dùng navMobile */
+   .nav {
+      display: none;
+   }
+
+   .navMobile {
+      display: flex;
+      justify-content: center; /* ở giữa header */
+      align-items: center;
+      gap: 12px;
+   }
+
+   /* Link mobile nhỏ gọn hơn */
+   .nav-link.navm {
+      font-size: 14px;
+      padding: 0.4rem 0.6rem;
+   }
+   .nav-link.navm::after {
+      height: 2px;
+   }
+   .nav-link.navm:hover::after,
+   .nav-link.navm.active::after {
+      width: 70%;
+   }
+
+   /* Auth nhỏ lại, bám mép phải */
+   .auth-section {
+      gap: 8px;
+   }
+   .btn {
+      padding: 0.45rem 0.8rem;
+      font-size: 13px;
+      box-shadow: none;
+   }
+   .btn-login {
+      padding: 0.35rem 0.6rem;
+   }
+   .btn-icon {
+      margin-right: 6px;
+   }
+
+   .user-info {
+      padding: 0.35rem 0.6rem;
+      font-size: 14px;
+   }
+   .user-icon {
+      font-size: 14px;
+   }
+   .username {
+      font-weight: 600;
+   }
+
+   /* Dropdown rộng ít hơn trên mobile */
+   .userDropdown .menu {
+      min-width: 160px;
+   }
+}

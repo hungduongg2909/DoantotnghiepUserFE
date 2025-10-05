@@ -1,0 +1,191 @@
+/* RESET nhỏ để không có margin/scroll “ảo” */
+:global(html, body, #root) {
+   height: 100%;
+}
+:global(body) {
+   margin: 0;
+}
+
+/* ====== Khung toàn trang với gradient (1 góc đậm → đối diện nhạt) ====== */
+.frame {
+   /* Cao đúng viewport — tránh dư 1px gây scrollbar trên vài máy */
+   height: calc(100vh - 1px);
+   min-height: calc(100vh - 1px);
+   @supports (height: 100dvh) {
+      height: calc(100dvh - 1px);
+      min-height: calc(100dvh - 1px);
+   }
+
+   /* Nền gradient toàn trang */
+   background:
+      radial-gradient(1200px 600px at -10% -10%, #dbeafe 0%, transparent 60%),
+      radial-gradient(1000px 600px at 110% 110%, #e9d5ff 0%, transparent 58%),
+      linear-gradient(180deg, #ffffff 0%, #8cabe9 100%);
+
+   position: relative; /* cho mobile/iPad đặt header/footer absolute */
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: 1fr; /* mobile/iPad: main chiếm 1 màn hình */
+   overflow: clip; /* tránh scroll do subpixel/blur; không che nội dung trung tâm */
+}
+
+/* ========= PC (>=1200px): 2 cột 4–6 + footer dưới cùng ========= */
+@media (min-width: 1200px) {
+   .frame {
+      overflow: visible; /* desktop không cần clip */
+      display: grid;
+      grid-template-columns: minmax(320px, 0.4fr) minmax(420px, 0.6fr);
+      grid-template-rows: 1fr auto; /* content | footer */
+      align-items: center; /* căn giữa theo dọc cho hàng content */
+   }
+   .header {
+      grid-column: 1;
+      grid-row: 1;
+      position: static;
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+   }
+   .main {
+      grid-column: 2;
+      grid-row: 1;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+   }
+   .footer {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+      padding: 10px 12px;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+   }
+   /* Hiện đầy đủ nội dung hero trên desktop */
+   .headline,
+   .tagline,
+   .benefits {
+      display: block;
+   }
+}
+
+/* ========= iPad & Mobile (<1200px): dọc, header & footer đè lên ========= */
+@media (max-width: 1199.98px) {
+   /* Header đè trên cùng, chỉ logo + brand */
+   .header {
+      position: absolute;
+      inset: 0 auto auto 0; /* pin top */
+      top: 12px;
+      left: 0;
+      right: 0;
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* giữa ngang */
+      gap: 8px;
+      pointer-events: none; /* không chắn form; brand vẫn click via child override */
+
+      .brand {
+         pointer-events: auto;
+      } /* cho phép click nếu cần */
+   }
+
+   /* Ẩn mô tả dài để không rối mobile */
+   .headline,
+   .tagline,
+   .benefits {
+      display: none;
+   }
+
+   /* Footer đè sát đáy */
+   .footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 12px;
+      text-align: center;
+      padding: 8px 12px;
+      color: #64748b;
+      font-size: 12px;
+      pointer-events: none; /* không che interaction ở viền dưới */
+   }
+
+   /* Vùng children chiếm trọn 1 màn hình & luôn giữa */
+   .main {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 16px; /* viền an toàn */
+   }
+}
+
+/* ====== Brand / Logo ====== */
+.brand {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   font-weight: 800;
+   letter-spacing: 0.2px;
+}
+.logoImg {
+   width: 36px;
+   height: 36px;
+   object-fit: contain;
+   border-radius: 8px;
+   display: inline-block;
+}
+.brandName {
+   font-size: 18px;
+   color: #0f172a;
+}
+
+/* ====== Hero text (desktop only) ====== */
+.headline {
+   margin: 14px 0 8px;
+   font-size: 28px;
+   line-height: 1.15;
+   font-weight: 800;
+   letter-spacing: 0.2px;
+}
+@media (min-width: 1400px) {
+   .headline {
+      font-size: 34px;
+   }
+}
+.tagline {
+   margin: 0 0 16px 0;
+   color: #334155;
+   font-size: 15px;
+}
+
+.benefits {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   color: #1f2937;
+   li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 0;
+   }
+}
+.tick {
+   width: 20px;
+   height: 20px;
+   border-radius: 6px;
+   display: inline-grid;
+   place-items: center;
+   background: #e0e7ff;
+   color: #1d4ed8;
+   font-weight: 800;
+}
+
+/* ====== Children wrapper — LUÔN GIỮA, bạn chỉnh kích thước ở đây ====== */
+.childWrap {
+   /* Trung tâm cả dọc & ngang nhờ .main (place-items:center) */
+   width: min(100%, 560px); /* gợi ý: form tối đa 560px trên mobile/iPad */
+   /* bạn có thể đổi max-width tùy form: 420/480/560… */
+}

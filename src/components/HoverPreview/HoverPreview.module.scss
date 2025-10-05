@@ -1,0 +1,51 @@
+.hoverWrap {
+   position: relative; /* không còn quan trọng, nhưng giữ để ổn định layout */
+   display: inline-block;
+}
+
+.thumbLink {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.thumbImage {
+   object-fit: cover;
+   border-radius: 4px;
+   border: 1px solid #e5e7eb;
+   background: #fff;
+}
+
+.pdfThumb {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 10px;
+   font-weight: 700;
+   color: #ef4444;
+   background: #f3f4f6;
+   border: 1px solid #e5e7eb;
+   border-radius: 4px;
+   user-select: none;
+}
+
+/* popover dùng fixed để thoát khỏi overflow của bảng */
+.popoverFixed {
+   position: fixed;
+   transform: translateY(-50%);
+   z-index: 9999; /* nổi hẳn lên trên */
+   padding: 8px;
+   background: #fff;
+   border: 1px solid #e5e7eb;
+   border-radius: 10px;
+   box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.previewImage,
+.previewFrame {
+   display: block;
+   border-radius: 8px;
+   background: #fff;
+}

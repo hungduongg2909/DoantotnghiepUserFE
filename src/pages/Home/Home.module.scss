@@ -1,0 +1,75 @@
+.wrapper {
+   padding: 24px;
+   display: grid;
+   gap: 12px;
+}
+
+.title {
+   font-size: 20px;
+   font-weight: 700;
+   margin: 0 0 4px 0;
+   color: #111827;
+}
+
+.error {
+   background: #fef2f2;
+   color: #991b1b;
+   border: 1px solid #fecaca;
+   border-radius: 10px;
+   padding: 10px 12px;
+}
+
+.pager {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   justify-content: flex-end;
+}
+
+.rowsCtl {
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   color: #4b5563;
+   font-size: 14px;
+}
+
+.rowsSelect {
+   height: 32px;
+   border: 1px solid #d1d5db;
+   border-radius: 8px;
+   padding: 0 10px;
+   background: #fff;
+
+   &:focus {
+      outline: none;
+      border-color: #3b82f6;
+   }
+}
+
+.pgBtn {
+   height: 36px;
+   padding: 0 12px;
+   background: #111827;
+   color: #fff;
+   border-radius: 8px;
+   font-weight: 600;
+   cursor: pointer;
+   transition:
+      transform 0.05s ease,
+      opacity 0.2s ease;
+
+   &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+   }
+
+   &:not(:disabled):active {
+      transform: translateY(1px);
+   }
+}
+
+.pgInfo {
+   font-size: 14px;
+   color: #4b5563;
+}

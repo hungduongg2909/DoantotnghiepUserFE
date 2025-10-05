@@ -1,0 +1,50 @@
+/* Preview.module.scss */
+.wrapper {
+   padding: 24px;
+   display: grid;
+   gap: 16px;
+}
+.headerRow {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+}
+.title {
+   font-size: 20px;
+   font-weight: 700;
+   color: #111827;
+   margin: 0;
+}
+.error {
+   background: #fef2f2;
+   color: #991b1b;
+   border: 1px solid #fecaca;
+   border-radius: 10px;
+   padding: 10px 12px;
+}
+.message {
+   background: #ecfdf5;
+   color: #065f46;
+   border: 1px solid #a7f3d0;
+   border-radius: 10px;
+   padding: 10px 12px;
+}
+.card {
+   display: grid;
+   gap: 12px;
+}
+.cardHeader {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+.cardTitle {
+   font-size: 16px;
+   font-weight: 700;
+   color: #111827;
+}
+.grandTotal {
+   font-size: 16px;
+   color: #111827;
+}

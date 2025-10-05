@@ -1,0 +1,226 @@
+// Return.module.scss
+:global(:root) {
+}
+
+.wrap {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.headerRow {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+}
+
+.title {
+   font-size: 20px;
+   font-weight: 700;
+}
+
+.controls {
+   display: flex;
+   gap: 12px;
+}
+
+.errorBox {
+   color: #b91c1c;
+   background: #fee2e2;
+   border: 1px solid #fecaca;
+   padding: 8px 12px;
+   border-radius: 6px;
+}
+
+.tr.selected {
+   background-color: #abcff4; /* slate-100 */
+}
+
+.footer {
+   display: flex;
+   align-items: center;
+   justify-content: right;
+   padding: 8px 10px;
+}
+
+/* --- Button Return: ẩn trên mobile bằng class --- */
+.btnReturn {
+   @apply border rounded px-4 py-2;
+   color: white;
+   border: none;
+   background-color: #007bff;
+   border-radius: 5px;
+   padding: 10px 20px;
+   font-size: 16px;
+   margin: 10px;
+   width: 150px;
+   cursor: pointer;
+}
+
+.btnReturn:disabled {
+   background-color: #a0a0a0;
+   cursor: not-allowed;
+}
+
+.hiddenOnMobile {
+   @media (max-width: 768px) {
+      display: none !important;
+   }
+}
+
+/* --- Product name toggle (ellipsis 1 dòng, click để mở/thu) --- */
+.nameBtn {
+   all: unset;
+   display: inline-block;
+   max-width: 100%;
+   cursor: pointer;
+   border-radius: 6px;
+   padding: 2px 4px;
+   transition: background 0.15s ease;
+
+   &:hover {
+      background: #f3f4f6;
+   }
+}
+
+.nameText {
+   display: inline-block;
+   max-width: 32ch; /* chống quá dài khi bảng rộng */
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+
+   &.open {
+      max-width: none;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      word-break: break-word;
+   }
+}
+
+/* Wrapper bảng: PC có thể auto, Mobile bắt buộc fit màn hình */
+.tableWrap {
+   width: 100%;
+   border-radius: 10px;
+   overflow-x: hidden; /* chặn scroll ngang trên mobile */
+   padding: 10px;
+   border-radius: 10px;
+}
+
+thead {
+   background-color: aliceblue; /* slate-100 */
+}
+
+/* Căn text chung cho th */
+.thLeft {
+   text-align: left;
+}
+.thRight {
+   text-align: right;
+}
+
+/* Chiều rộng cột – tuned để KHÔNG tràn trên mobile (table-fixed) */
+.colProduct {
+   width: 29%;
+   max-width: 0;
+} /* 1 dòng + ellipsis (nhờ .nameText) */
+.colSize {
+   width: 9%;
+   max-width: 0;
+}
+.colImg {
+   width: 10%;
+   max-width: 0;
+} /* ~40px thumb */
+.colAssign {
+   width: 18%;
+   max-width: 0;
+} /* dd/mm/yyyy vừa tầm */
+.colShort {
+   width: 14%;
+   max-width: 0;
+} /* số */
+
+.tdLeft {
+   text-align: left;
+}
+.tdRight {
+   text-align: right;
+}
+
+/* Product name: 1 dòng + ellipsis; click mở/thu */
+.nameBtn {
+   all: unset;
+   cursor: pointer;
+   display: inline-block;
+   max-width: 100%;
+   border-radius: 6px;
+   padding: 2px 4px;
+}
+.nameBtn:hover {
+   background: #f3f4f6;
+}
+.nameText {
+   display: inline-block;
+   max-width: 100%;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+.nameText.open {
+   white-space: normal;
+   overflow: visible;
+   text-overflow: clip;
+   word-break: break-word;
+}
+
+/* Mobile tightening */
+@media (max-width: 768px) {
+   /* giữ đúng 1 màn hình, không tràn */
+   .tableWrap {
+      overflow-x: hidden;
+   }
+
+   /* giảm nhẹ font/padding nếu muốn chặt hơn nữa
+     (đã set py-1.5 + leading 18px trong JSX) */
+
+   /* nếu còn chật, có thể co các cột sau: */
+   .colProduct {
+      width: 25%;
+   } /* 1 dòng + ellipsis vẫn giữ */
+   .colSize {
+      width: 19%;
+   }
+   .colImg {
+      width: 16%;
+   } /* đủ cho thumbnail ~40px */
+   .colAssign {
+      width: 20%;
+   } /* dd/mm/yy gọn hơn */
+   .colShort {
+      width: 20%;
+   }
+
+   /* Ẩn chữ “Selected … items” đã xử lý ở JSX; không cần CSS thêm */
+}
+
+/* Desktop có thể nới ra nếu thích */
+@media (min-width: 1024px) {
+   .colProduct {
+      width: 40%;
+   }
+   .colSize {
+      width: 8%;
+   }
+   .colImg {
+      width: 8%;
+   }
+   .colAssign {
+      width: 10%;
+   }
+   .colShort {
+      width: 10%;
+   }
+}
