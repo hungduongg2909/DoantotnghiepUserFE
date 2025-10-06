@@ -178,7 +178,7 @@
       position: absolute;
       top: 100%;
       right: 0;
-      min-width: 180px;
+      min-width: 147px;
       background: #fff;
       border: 1px solid #e5e7eb;
       border-radius: 10px;
@@ -258,7 +258,7 @@
       /* đổi từ: top: calc(100% + 6px); */
       top: 100%;
       right: 0;
-      min-width: 180px;
+      min-width: 147px;
       background: #ffffff;
       border: 1px solid #e5e7eb;
       border-radius: 10px;
@@ -358,6 +358,7 @@
       padding: 0.45rem 0.8rem;
       font-size: 13px;
       box-shadow: none;
+      width: 100%;
    }
    .btn-login {
       padding: 0.35rem 0.6rem;

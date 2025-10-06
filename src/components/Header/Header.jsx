@@ -99,17 +99,17 @@ const Header = () => {
                               >
                                  Change Password
                               </div>
+                              
+                              <LogoutButton
+                                 className={cx("btn", "btn-logout")}
+                                 onSuccess={() => setUser(null)}
+                                 onError={(msg) => console.warn(msg)}
+                              >
+                                 <span className={cx("btn-icon")}>🚪</span>
+                                 Logout
+                              </LogoutButton>
                            </div>
                         </div>
-
-                        <LogoutButton
-                           className={cx("btn", "btn-logout")}
-                           onSuccess={() => setUser(null)}
-                           onError={(msg) => console.warn(msg)}
-                        >
-                           <span className={cx("btn-icon")}>🚪</span>
-                           Logout
-                        </LogoutButton>
                      </>
                   ) : (
                      <>
